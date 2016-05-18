@@ -39,17 +39,12 @@ public $PasswordHash;
     $this->updatePasswordHash($password);
 
   }
-
-
-
   public function updatePasswordHash($password){
-    $this->PasswordHash = password_hash($password,PASSWORD_BCRYPT,["salt"=>str_pad($this->FullName,22,"*")]);
+    $this->PasswordHash = password_hash($password,PASSWORD_BCRYPT);
   }
   public function doPasswordsMatch($password){
-    return $this->PasswordHash == password_hash($password,PASSWORD_BCRYPT,["salt"=>str_pad($this->FullName,22,"*")]);
+    return password_verify($password, $this->PasswordHash);
   }
-
-
   public function getUserName(){
     return $this->UserName;
   }
