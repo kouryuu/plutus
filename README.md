@@ -1,4 +1,5 @@
-# Plutus Personal Finance App
+# Plutus Personal Finance App ![Plutus](plutus-gray.png "Plutus Logo")
+
 
 Plutus a dead-simple personal finance web application.
 
