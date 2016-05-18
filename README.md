@@ -1,4 +1,4 @@
-# Plutus Personal Finance App ![Plutus](plutus-gray.png "Plutus Logo")
+# Plutus Personal Finance App <img src="plutus-gray.png" alt="Plutus Logo" height="70px" width="70px" />
 
 
 Plutus a dead-simple personal finance web application.
