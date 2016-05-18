@@ -19,21 +19,21 @@ class User{
 // Defaults
 private $UserName;
 private $FullName;
-public $PasswordHash;
+private $PasswordHash;
 /**
  * Constructor.
  *
  *
- * @param string       $AccountNumber          This is the account number associated with such account
- * @param string       $BankName               The name of the bank that issues the account.
- * @param string       $NickName               A nickname for the account to be distinguishable without revealing the account NumberFormatter
- * @param integer      $CurrentBalance         An integer representing the value in cents of the account
+ * @param string       $UserName         This is the unique user name used to identify a user.
+ * @param string       $FullName         The full name of the user.
+ * @param string       $PasswordHash     A cryptographic hash generated using PHP's standard password_hash function.
  */
-
-
-
-
-  public function createUser($UserName,$FullName,$password){
+  public function __construct($UserName,$FullName,$PasswordHash){
+    $this->UserName = $UserName;
+    $this->FullName = $FullName;
+    $this->PasswordHash = $PasswordHash;
+  }
+  public function createNewUser($UserName,$FullName,$password){
     $this->UserName = $UserName;
     $this->FullName = $FullName;
     $this->updatePasswordHash($password);
@@ -48,8 +48,14 @@ public $PasswordHash;
   public function getUserName(){
     return $this->UserName;
   }
-  public function getFullName(){
+  public function getFullNameUpp(){
     return strtoupper($this->FullName);
+  }
+  public function getFullName(){
+    return $this->FullName;
+  }
+  public function getPasswordHash(){
+    return $this->PasswordHash;
   }
   public function setUserName($UserName){
     $this->UserName = $UserName;
