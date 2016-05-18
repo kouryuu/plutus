@@ -19,7 +19,7 @@ class User{
 // Defaults
 private $UserName;
 private $FullName;
-private $PasswordHash;
+public $PasswordHash;
 /**
  * Constructor.
  *
@@ -43,10 +43,10 @@ private $PasswordHash;
 
 
   public function updatePasswordHash($password){
-    $this->PasswordHash = crypt($password,$this->FullName);
+    $this->PasswordHash = password_hash($password,PASSWORD_BCRYPT,["salt"=>str_pad($this->FullName,22,"*")]);
   }
   public function doPasswordsMatch($password){
-    return $this->PasswordHash == crypt($password,$this->FullName);
+    return $this->PasswordHash == password_hash($password,PASSWORD_BCRYPT,["salt"=>str_pad($this->FullName,22,"*")]);
   }
 
 
