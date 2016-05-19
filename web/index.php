@@ -30,6 +30,8 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
 //   //     $account => $acc,
 //   //   ));
 // });
+
+
 $app->post('/new/user',function(Request $request) use ($app){
   $user = new Plutus\User();
   $response = array();
@@ -40,13 +42,12 @@ $app->post('/new/user',function(Request $request) use ($app){
   if($user_name == null || $user_full_name == null || $user_password_hash == null ){
     $response['errors'] += 1;
     $response['error_desc'] = "Invalid request";
-    print($user_name);
     return json_encode($response);
   }
-  $user_exists = $app['db']->fetchAll("SELECT * from User WHERE user_name='.str($user_name).'");  //Should be escaped for XSS
+  $user_exists = $app['db']->fetchAll("SELECT * from User WHERE user_name='".$user_name."'");  //Should be escaped for XSS
   if(sizeof($user_exists) == 0){
     $user = new Plutus\User("","","");// I don't like this
-    $user->createNewUser($user_name,$user_full_name,$password_hash);
+    $user->createNewUser($user_name,$user_full_name,$user_password_hash);
     $user_pers = new Plutus\Persistance($user);
     try{
       $app['db']->executeQuery($user_pers->saveNewUserSQL());
@@ -63,7 +64,31 @@ $app->post('/new/user',function(Request $request) use ($app){
   }
   return json_encode($response);
 });
-
+$app->post('/login',function(Request $request) use ($app){
+  $response = array();
+  $response['errors'] = 0;
+  $user_name = $request->get('user_name');
+  $user_password_hash = $request->get('user_password_hash');
+  $user_exists = $app['db']->fetchAll("SELECT * from User WHERE user_name='".$user_name."'");  //Should be escaped for XSS
+    if(sizeof($user_exists) == 1){
+      $user_db = new Plutus\User($user_exists[0]['user_name'],$user_exists[0]['full_name'],$user_exists[0]['password_hash']);
+      if($user_db->doPasswordsMatch($user_password_hash)){
+        $response['user_name']= $user_exists[0]['user_name'];
+        $response['full_name']= $user_exists[0]['full_name'];
+        return json_encode($response);
+      }else{
+        // Passwords do not match
+        $response['errors'] += 1;
+        $response['error_desc'] = "Wrong password";
+        $response['hash'] = $user_exists[0]['password_hash'];
+        $response['other-hash'] = password_hash($user_password_hash,PASSWORD_BCRYPT);
+      }
+    }else{
+      $response['errors'] += 1;
+      $response['error_desc'] = "Wrong password";
+    }
+    return json_encode($response);
+});
 
 
 
