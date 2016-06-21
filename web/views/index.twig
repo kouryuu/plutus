@@ -1,1 +1,19 @@
-<h1> Hola mundo {{ name }}</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Main</title>
+    <link rel="stylesheet" href="assets/styles/style.css">
+  </head>
+<body ng-app="loginApp">
+<div ng-controller="TestController" class="side-bar">
+{% verbatim %}
+{{ greetings }}
+{% endverbatim %}
+</div>
+<div class="side-bar"> </div>
+
+</body>
+
+<script src="assets/js/bundle.js" lang="javascript" type="text/javascript" ></script>
+</html>

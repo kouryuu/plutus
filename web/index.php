@@ -20,16 +20,9 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     ),
 ));
 
-// $app->get('/',function() use ($app){
-//   $user = new Plutus\User();
-//   $user->createNewUser("testuser","Test User","simplePassword");
-//   $persistance = new Plutus\Persistance($user);
-//   $app['db']->executeQuery($persistance->saveNewUserSQL());
-//   return 'TRUE';
-//   // return $app['twig']->render('index.twig', array(
-//   //     $account => $acc,
-//   //   ));
-// });
+$app->get('/',function() use ($app){
+  return $app['twig']->render('index.twig');
+});
 
 
 $app->post('/new/user',function(Request $request) use ($app){
@@ -80,12 +73,10 @@ $app->post('/login',function(Request $request) use ($app){
         // Passwords do not match
         $response['errors'] += 1;
         $response['error_desc'] = "Wrong password";
-        $response['hash'] = $user_exists[0]['password_hash'];
-        $response['other-hash'] = password_hash($user_password_hash,PASSWORD_BCRYPT);
       }
     }else{
       $response['errors'] += 1;
-      $response['error_desc'] = "Wrong password";
+      $response['error_desc'] = "Wrong user";
     }
     return json_encode($response);
 });
