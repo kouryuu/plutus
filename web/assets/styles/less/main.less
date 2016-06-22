@@ -1,0 +1,48 @@
+@import "bootstrap/bootstrap.less";
+// Custom theme vars
+@brand-success : rgb(51, 195, 174);
+
+@input-bg : transparent;
+.btn{
+  border-radius: 0px;
+  letter-spacing: 2px;
+  padding: 10px;
+}
+.opacity (@opacity: 0.5) {
+	-webkit-opacity: 	@opacity;
+	-moz-opacity: 		@opacity;
+	opacity: 		@opacity;
+}
+@input-border-focus: rgb(102, 233, 128);
+.well{
+  .opacity(0.8);
+}
+.no-border{
+  background-color: transparent;
+  border-left-color:transparent;
+  border-right-color:transparent;
+  border-top-color:transparent;
+  box-shadow: none;
+}
+.cool-bg{
+  background-image: url('/assets/imgs/bkgrnd.jpg');
+  background-size:cover;
+}
+input.form-control{
+  .no-border;
+  border-bottom: 2px solid @gray;
+  font-size: 2em;
+  text-align: center;
+
+}
+input.form-control:focus{
+  .no-border;
+}
+#login-form{
+  padding-left: 40px;
+
+  padding-right: 40px;
+}
+#login-form input{
+  margin-bottom: 2em;
+}
