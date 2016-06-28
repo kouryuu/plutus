@@ -4,3 +4,4 @@ vendor/*
 composer.lock
 app.db
 web/assets/js/dist/*
+tests/API_testing.fish
