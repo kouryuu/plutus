@@ -1,0 +1,37 @@
+{
+  "name": "plutus",
+  "version": "1.0.0",
+  "description": "Plutus a dead-simple personal finance web application.",
+  "main": "gulpfile.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "angular": "^1.5.6",
+    "browserify": "^13.0.1",
+    "jquery": "^2.2.4"
+  },
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "bootstrap-less": "^3.3.8",
+    "gulp": "^3.9.1",
+    "gulp-batch": "^1.0.5",
+    "gulp-less": "^3.1.0",
+    "gulp-watch": "^4.3.8",
+    "react": "^15.1.0",
+    "vinyl-transform": "^1.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kouryuu/plutus.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kouryuu/plutus/issues"
+  },
+  "homepage": "https://github.com/kouryuu/plutus#readme"
+}
