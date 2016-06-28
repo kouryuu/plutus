@@ -8,12 +8,12 @@
   letter-spacing: 2px;
   padding: 10px;
 }
-.opacity (@opacity: 0.5) {
+.opacity (@opacity) {
 	-webkit-opacity: 	@opacity;
 	-moz-opacity: 		@opacity;
 	opacity: 		@opacity;
 }
-@input-border-focus: rgb(102, 233, 128);
+@input-border-focus: rgb(48, 236, 167);
 .well{
   .opacity(0.8);
 }
@@ -45,4 +45,8 @@ input.form-control:focus{
 }
 #login-form input{
   margin-bottom: 2em;
+}
+.alert{
+  font-size: 1.2em;
+  .opacity(1);
 }
