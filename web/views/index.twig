@@ -18,14 +18,14 @@ Plutus
 <br />
 <form name="login" id="login-form">
 
-<input type="text" ng-model="username" class="form-control" placeholder="username" />
+<input type="text" ng-model="username" class="form-control" ng-model="user" placeholder="username" />
 <input type="password" ng-model="password" class="form-control" placeholder="password" />
-<div class="alert alert-danger" role="alert">
+<div class="alert alert-danger" role="alert" ng-show="login_errors!=''">
   {% verbatim %}
   {{ login_errors }}
   {% endverbatim %}
 </div>
-<center><button type="submit" class="btn btn-success" ng-click="login()">Log In</button></center>
+<center><button type="submit" class="btn btn-success" ng-click="logmein()">Log In</button></center>
 </form>
 </div>
 <div class="col-md-6 col-md-offset-1 text-center well">
@@ -37,5 +37,5 @@ Plutus
         <a href="#" class="btn btn-success">Create new Account</a>
 </div>
 
-<script src="assets/js/bundle.js" lang="javascript" type="text/javascript" ></script>
+<script src="assets/js/dist/bundle.js" lang="javascript" type="text/javascript" ></script>
 </html>
