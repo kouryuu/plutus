@@ -2,18 +2,40 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Main</title>
+    <title>Plutus-Finance App</title>
     <link rel="stylesheet" href="assets/styles/style.css">
   </head>
-<body ng-app="loginApp">
-<div ng-controller="TestController" class="side-bar">
-{% verbatim %}
-{{ greetings }}
-{% endverbatim %}
-</div>
-<div class="side-bar"> </div>
+<body ng-app="loginApp" class="cool-bg">
+<div class="row">
+<div ng-controller="TestController" class="col-md-4 well">
+<img src="/assets/imgs/plutus-gray.png" width="70px"/>
+<br />
+<br />
+<h3 class="text-center">
+Plutus
+</h3>
+<br />
+<br />
+<form name="login" id="login-form">
 
-</body>
+<input type="text" ng-model="username" class="form-control" placeholder="username" />
+<input type="password" ng-model="password" class="form-control" placeholder="password" />
+<div class="alert alert-danger" role="alert">
+  {% verbatim %}
+  {{ login_errors }}
+  {% endverbatim %}
+</div>
+<center><button type="submit" class="btn btn-success" ng-click="login()">Log In</button></center>
+</form>
+</div>
+<div class="col-md-6 col-md-offset-1 text-center well">
+  <h1> Welcome to Plutus!</h2>
+    <h3> Plutus is a dead-simple finance web application.
+      <p>If you have not created an account already, please do so to get started.
+        <br />
+        <br />
+        <a href="#" class="btn btn-success">Create new Account</a>
+</div>
 
 <script src="assets/js/bundle.js" lang="javascript" type="text/javascript" ></script>
 </html>
