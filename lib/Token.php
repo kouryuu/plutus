@@ -29,12 +29,10 @@ private $Timestamp;
  * @param string       $Token             The token hash
  * @param integer      $Timestamp         The UNIX timestamp when the Token was issued.
  */
-  public function __construct($UserName,$Token,$Timestamp){
-      $this->UserName = $UserName;
-      $this->Token = $Token;
-      $this->Timestamp = $Timestamp;
+  public function __construct(){
   }
   public function createToken($username){
+    $this->UserName = $username;
     $this->Timestamp = time();
     $this->Token = sha1($username.$this->Timestamp.rand(0,PHP_INT_MAX));
   }
