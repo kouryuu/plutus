@@ -21,9 +21,23 @@ class LoginController{
       if(sizeof($user_exists) == 1){
         $user_db = new User($user_exists[0]['user_name'],$user_exists[0]['full_name'],$user_exists[0]['password_hash']);
         if($user_db->doPasswordsMatch($user_password_hash)){
+          $Token = new Token();
+          $Token->createToken($user_db->getUserName());
+          $token_pers = new Persistance($Token);
+          error_log($Token->getUserName());
+          try{
+            $app['db']->executeQuery($token_pers->saveToken());
+          }catch(Exception $e){
+            $response['errors'] += 1;
+            $response['error_desc'] = "Error with Token.";
+            //$e->getMessage();// This gets logged.
+          }
+          if($response['errors'] == 0){
           $response['user_name']= $user_exists[0]['user_name'];
           $response['full_name']= $user_exists[0]['full_name'];
-          return json_encode($response);
+          $response['token'] = $Token->getToken();
+          }
+        //  return json_encode($response);
         }else{
           // Passwords do not match
           $response['errors'] += 1;
