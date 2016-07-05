@@ -33,7 +33,14 @@ public function saveNewUserSQL(){
   //throw new Exception('Method not available for that class.');
   }
 }
-
+public function saveToken(){
+  if($this->object->getUserName() == ""){
+    return false;
+  }
+  //if($this->className == "Token"){
+    return "INSERT INTO Token (user_name,token,_timestamp) VALUES ('".$this->object->getUserName()."','".$this->object->getToken()."',".$this->object->getTimestamp().")";
+  //  }
+}
 
 
 
